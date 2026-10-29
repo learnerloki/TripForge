@@ -1,0 +1,858 @@
+/* ========================================
+   TRIPFORGE — TRIP BUILDER
+   Section A: Trip Header
+   ======================================== */
+
+/* Section wrapper */
+.builder-section {
+  padding: 70px 0;
+}
+
+.builder-container {
+  width: min(92%, 1280px);
+  margin: 0 auto;
+}
+
+/* Eyebrow label */
+.section-eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+/* Main section heading */
+.section-title {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+/* Supporting subtitle */
+.section-subtitle {
+  margin: 0 0 24px;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Ghost text button */
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.text-button:hover {
+  color: var(--text);
+}
+
+/* Empty state helper (used when no destination is selected) */
+.builder-section.hidden {
+  display: none;
+}
+
+/* ========================================
+   SECTION B: DATES & DURATION
+   ======================================== */
+
+.date-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.date-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-field label {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.date-field input[type="date"] {
+  min-height: 44px;
+  padding: 0 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 14px;
+}
+
+.date-field input[type="date"]:focus {
+  outline: none;
+  border-color: rgba(200, 107, 60, 0.65);
+}
+
+.duration-readout {
+  margin: 4px 0 0;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 14px;
+}
+
+.duration-readout #value-total-days {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.field-error {
+  margin: 8px 0 0;
+  color: var(--error);
+  font-family: var(--font-main);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.field-error.hidden {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .date-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SECTION C: TRAVEL PARTY
+   ======================================== */
+
+.members-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.member-counter {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.counter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.counter-label {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.counter-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.counter-btn:hover {
+  background: var(--surface-light);
+  border-color: rgba(200, 107, 60, 0.5);
+}
+
+.counter-btn:active {
+  transform: scale(0.96);
+}
+
+.counter-group input[type="text"] {
+  width: 64px;
+  min-height: 36px;
+  padding: 0 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.counter-group input[type="text"]:focus {
+  outline: none;
+  border-color: rgba(200, 107, 60, 0.65);
+}
+
+/* Remove any native spinner UI just in case */
+.counter-group input::-webkit-outer-spin-button,
+.counter-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counter-group input[type="text"] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 620px) {
+  .member-counter {
+    flex-direction: column;
+  }
+
+  .counter-group {
+    width: 100%;
+  }
+
+  .counter-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ========================================
+   SECTION D: BUDGET & STAY PREFERENCE
+   ======================================== */
+
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.budget-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.budget-field label {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.budget-field input[type="text"] {
+  min-height: 44px;
+  padding: 0 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 16px;
+}
+
+.budget-field input[type="text"]:focus {
+  outline: none;
+  border-color: rgba(200, 107, 60, 0.65);
+}
+
+.budget-hint {
+  margin: 0;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 13px;
+}
+
+.budget-hint span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.stay-preference-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.stay-preference-legend {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.stay-options {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stay-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.stay-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.stay-option-label {
+  font-family: var(--font-main);
+  font-size: 14px;
+  color: var(--text);
+}
+
+@media (max-width: 620px) {
+  .stay-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ========================================
+   SECTION E: NEARBY HOTELS
+   ======================================== */
+
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.hotel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hotel-card:hover {
+  border-color: rgba(200, 107, 60, 0.5);
+}
+
+.hotel-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.hotel-card-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.hotel-card-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.hotel-card-meta {
+  display: flex;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-text);
+}
+
+.hotel-card-price {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hotel-card-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hotel-card-amenity {
+  padding: 6px 10px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--subtle-text);
+  white-space: nowrap;
+}
+
+.hotel-card-select {
+  padding: 9px 7px;
+  background: var(--text);
+  color: var(--background);
+  border: 0;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  align-self: flex-start;
+  width: auto;
+}
+
+.hotel-card-select:hover {
+  background: var(--accent);
+  color: #fffaf5;
+}
+
+.hotel-card.selected .hotel-card-select {
+  background: var(--accent);
+  color: #fffaf5;
+}
+
+@media (max-width: 900px) {
+  .hotel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .hotel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SECTION F: DAILY ACTIVITIES
+   ======================================== */
+
+.activities-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.activities-label {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.itinerary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itinerary-day {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itinerary-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  gap: 12px;
+}
+
+.itinerary-day-number {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.itinerary-day-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted-text);
+  font-weight: 600;
+}
+
+.itinerary-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.itinerary-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slot-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.slot-select {
+  min-height: 40px;
+  padding: 0 12px;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.slot-select:focus {
+  outline: none;
+  border-color: rgba(200, 107, 60, 0.65);
+}
+
+.slot-select option {
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px;
+}
+
+@media (max-width: 620px) {
+  .activities-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .itinerary-slots {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SECTION G: TRIP SUMMARY & SAVE
+   ======================================== */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.summary-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summary-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--subtle-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-value {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.builder-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.builder-cta.secondary {
+  background: transparent;
+  color: var(--muted-text);
+  border: 1px solid var(--border);
+}
+
+.builder-cta.secondary:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.builder-cta.primary {
+  background: var(--accent);
+  color: #fffaf5;
+}
+
+.builder-cta.primary:hover {
+  background: #b55a2e;
+  transform: translateY(-1px);
+}
+
+.builder-cta.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.builder-message {
+  margin: 16px 0 0;
+  font-family: var(--font-main);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-actions {
+    flex-direction: column;
+  }
+
+  .builder-cta {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   EMPTY STATE (shared)
+   ======================================== */
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.empty-title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.empty-desc {
+  margin: 0 0 24px;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.empty-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 24px;
+  background: var(--text);
+  color: var(--background);
+  border: 0;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.empty-button:hover {
+  background: #deded8;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   MY TRIPS PAGE
+   ======================================== */
+
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.trip-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.trip-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.trip-card p {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.trip-card p.trip-date {
+  color: var(--muted-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trip-card p.trip-hotel span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.trip-card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  display: inline-block;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-edit {
+  background: var(--accent);
+  color: #fffaf5;
+}
+
+.btn-edit:hover {
+  background: #b55a2e;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.btn-delete:hover {
+  background: var(--error);
+  color: #ffffff;
+  transform: translateY(-1px);
+}

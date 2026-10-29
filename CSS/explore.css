@@ -1,0 +1,1174 @@
+/* ========================================
+   TRIPFORGE — EXPLORE PAGE
+   Warm, cinematic, editorial styling
+======================================== */
+
+/* Page foundation */
+#explore-page {
+  width: 100%;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.explore-content-container,
+.explore-hero-container {
+  width: min(92%, 1280px);
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================
+   EXPLORE HERO
+======================================== */
+
+#explore-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 76px;
+  text-align: center;
+}
+
+#explore-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(37, 73, 105, 0.12),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(200, 107, 60, 0.07),
+      transparent 35%
+    );
+  pointer-events: none;
+}
+
+.explore-hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.explore-eyebrow,
+.explore-section-eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+}
+
+.explore-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 500;
+  letter-spacing: -2px;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.explore-description {
+  max-width: 600px;
+  margin: 20px auto 0;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.8;
+  text-wrap: balance;
+}
+
+/* ========================================
+   DESTINATION SEARCH
+======================================== */
+
+.destination-search {
+  max-width: 680px;
+  margin: 38px auto 0;
+  text-align: left;
+}
+
+.destination-search > label {
+  display: block;
+  margin-bottom: 11px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.destination-search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.destination-search-field:focus-within {
+  border-color: rgba(200, 107, 60, 0.65);
+}
+
+.destination-search-field input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 13px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.destination-search-field input::placeholder {
+  color: var(--subtle-text);
+}
+
+.destination-search-field input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.destination-search-field button,
+.create-trip-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  background: var(--text);
+  color: var(--background);
+  border: 0;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.destination-search-field button:hover,
+.create-trip-button:not(:disabled):hover {
+  background: var(--accent);
+  color: #fffaf5;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   SECTION HEADINGS
+======================================== */
+
+#explore-filters,
+#explore-results {
+  padding: 48px 0;
+}
+
+.explore-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.explore-section-heading > div {
+  min-width: 0;
+}
+
+.explore-section-eyebrow {
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+
+.explore-section-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.explore-section-description {
+  max-width: 650px;
+  margin: 12px 0 0;
+  color: var(--muted-text);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.text-button {
+  flex-shrink: 0;
+  padding: 8px 0;
+  background: transparent;
+  border: 0;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.text-button:hover {
+  color: var(--accent);
+}
+
+/* ========================================
+   EXPERIENCE FILTERS
+======================================== */
+
+.experience-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 54px;
+  padding: 0 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted-text);
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.filter-option:hover {
+  border-color: rgba(200, 107, 60, 0.5);
+  color: var(--text);
+}
+
+.filter-option:has(input:checked) {
+  background: rgba(200, 107, 60, 0.08);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filter-option input {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+#additional-filters {
+  display: contents;
+}
+
+#additional-filters[hidden] {
+  display: none;
+}
+
+.more-filters-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 7px 0;
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.more-filters-button:hover {
+  color: var(--text);
+}
+
+/* ========================================
+   RESULTS
+======================================== */
+
+#explore-results {
+  border-top: 1px solid rgba(242, 241, 236, 0.07);
+}
+
+.results-sort {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted-text);
+  font-size: 12px;
+}
+
+.results-sort select {
+  max-width: 180px;
+  min-height: 38px;
+  padding: 0 28px 0 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 12px;
+}
+
+.selected-filter-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--subtle-text);
+  font-size: 12px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ========================================
+   EXPERIENCE CARDS
+======================================== */
+
+.place-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.place-card:hover {
+  background: var(--surface-light);
+  border-color: rgba(200, 107, 60, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.16);
+}
+
+.place-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-light);
+}
+
+.place-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.place-card:hover .place-card-image img {
+  transform: scale(1.03);
+}
+
+.place-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px;
+}
+
+.place-card-location {
+  margin: 0 0 9px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.7px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.place-card-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.place-card-description {
+  margin: 11px 0 18px;
+  color: var(--muted-text);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.place-card-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.place-theme-tag {
+  padding: 5px 8px;
+  background: rgba(200, 107, 60, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--muted-text);
+  font-size: 10px;
+}
+
+/* Selection checkbox */
+.place-select {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 5px;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.place-select input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Buttons used inside dynamically rendered cards */
+.place-card button,
+.place-card__select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: auto;
+  padding: 0 15px;
+  background: var(--text);
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--background);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.place-card button:hover,
+.place-card__select:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fffaf5;
+  transform: translateY(-1px);
+}
+
+.place-card__select[aria-pressed="true"] {
+  background: rgba(200, 107, 60, 0.12);
+  border-color: rgba(200, 107, 60, 0.55);
+  color: var(--text);
+}
+
+.place-card__select[aria-pressed="true"]:hover {
+  background: rgba(200, 107, 60, 0.2);
+  color: var(--text);
+}
+
+/* Empty results */
+.no-results,
+#no-results {
+  padding: 42px 20px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted-text);
+  font-family: var(--font-editorial);
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+#no-results[hidden],
+.no-results[hidden] {
+  display: none;
+}
+
+/* ========================================
+   TRIP SELECTION
+======================================== */
+
+#trip-selection {
+  padding: 76px 0 90px;
+  border-top: 1px solid rgba(242, 241, 236, 0.07);
+  background:
+    radial-gradient(
+      ellipse at 75% 50%,
+      rgba(200, 107, 60, 0.06),
+      transparent 55%
+    ),
+    var(--background);
+}
+
+.trip-selection-container {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  align-items: center;
+  gap: 70px;
+  width: min(92%, 1120px);
+  margin: 0 auto;
+}
+
+.trip-selection-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.trip-selection-description {
+  max-width: 480px;
+  margin: 18px 0 0;
+  color: var(--muted-text);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.trip-selection-summary {
+  padding: 26px;
+  background: rgba(17, 20, 18, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+#selected-places-count {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#selected-places-list {
+  display: grid;
+  gap: 10px;
+}
+
+#selected-places-list > p {
+  margin: 0;
+  padding: 18px 0;
+  color: var(--muted-text);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Existing selected-item class */
+.selected-place-item,
+.selected-place {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--muted-text);
+  font-size: 12px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.selected-place-item:hover,
+.selected-place:hover {
+  background: var(--surface-light);
+  border-color: rgba(200, 107, 60, 0.35);
+}
+
+.selected-place-item button,
+.selected-place__remove {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted-text);
+  font-family: var(--font-main);
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.selected-place-item button:hover,
+.selected-place__remove:hover {
+  background: rgba(200, 107, 60, 0.1);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.selected-place__name {
+  margin: 0 0 5px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.selected-place__category {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.create-trip-button {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.create-trip-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.trip-selection-message,
+#trip-selection-message {
+  margin: 12px 0 0;
+  color: var(--subtle-text);
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.filter-option:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.place-card__select:focus-visible,
+.selected-place__remove:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1000px) {
+  .experience-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .places-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trip-selection-container {
+    gap: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  #explore-hero {
+    padding: 76px 0 56px;
+  }
+
+  #explore-filters,
+  #explore-results {
+    padding: 36px 0;
+  }
+
+  .explore-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .experience-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .filter-option {
+    min-height: 50px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .places-grid {
+    gap: 16px;
+  }
+
+  .place-card-content {
+    padding: 17px;
+  }
+
+  .place-card-title {
+    font-size: 20px;
+  }
+
+  .trip-selection-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  #trip-selection {
+    padding: 56px 0 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  #explore-hero {
+    padding: 58px 0 44px;
+  }
+
+  .explore-title {
+    font-size: clamp(36px, 10vw, 46px);
+    letter-spacing: -1.4px;
+  }
+
+  .explore-description {
+    font-size: 13px;
+  }
+
+  .destination-search {
+    margin-top: 28px;
+  }
+
+  .destination-search-field {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .destination-search-field button {
+    width: 100%;
+  }
+
+  .experience-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .places-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-sort {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .results-sort select {
+    flex: 1;
+  }
+
+  .trip-selection-summary {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .place-card,
+  .place-card-image img,
+  .place-card button,
+  .place-card__select,
+  .selected-place-item,
+  .selected-place,
+  .selected-place-item button,
+  .selected-place__remove {
+    transition: none;
+  }
+
+  .place-card:hover,
+  .place-card button:hover,
+  .place-card__select:hover,
+  .place-card:hover .place-card-image img {
+    transform: none;
+  }
+}
+
+/* ==========================================
+   TRIPFORGE — EXPERIENCE CARDS
+   Warm, editorial, travel-focused styling
+   ========================================== */
+
+/* Grid */
+#places-grid,
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Card shell */
+#places-grid > *,
+.places-grid > * {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 300px;
+  overflow: hidden;
+
+  background: var(--surface, #151714);
+  border: 1px solid var(--border, #30312b);
+  border-radius: 5px;
+
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    transform 220ms ease;
+}
+
+/* Restrained hover */
+#places-grid > *:hover,
+.places-grid > *:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent, #c86b3c);
+  background: var(--surface-light, #1c1d19);
+}
+
+/* Card headings */
+#places-grid h2,
+#places-grid h3,
+#places-grid .place-card-title,
+#places-grid .place-card__title,
+.places-grid h2,
+.places-grid h3,
+.places-grid .place-card-title,
+.places-grid .place-card__title {
+  margin: 0;
+  padding: 24px 24px 0;
+
+  color: var(--text, #f4f0e8);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(21px, 1.6vw, 27px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+/* Location */
+#places-grid .place-card-location,
+#places-grid .place-card__location,
+.places-grid .place-card-location,
+.places-grid .place-card__location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+  padding: 14px 24px 0;
+
+  color: var(--subtle-text, #b4aea2);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+}
+
+/* Add a subtle location marker if the location is a paragraph */
+#places-grid .place-card-location::before,
+#places-grid .place-card__location::before,
+.places-grid .place-card-location::before,
+.places-grid .place-card__location::before {
+  content: "";
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #c86b3c);
+}
+
+/* Description */
+#places-grid .place-card-description,
+#places-grid .place-card__description,
+.places-grid .place-card-description,
+.places-grid .place-card__description {
+  margin: 0;
+  padding: 22px 24px 28px;
+
+  color: var(--muted-text, #ded8cd);
+  font-size: 15px;
+  line-height: 1.75;
+  font-weight: 400;
+
+  flex: 1;
+}
+
+/* Theme/category tags */
+#places-grid .place-card-themes,
+#places-grid .place-card__themes,
+.places-grid .place-card-themes,
+.places-grid .place-card__themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0 24px 20px;
+}
+
+#places-grid .place-theme-tag,
+#places-grid .place-card__tag,
+.places-grid .place-theme-tag,
+.places-grid .place-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 9px;
+
+  border: 1px solid var(--border, #30312b);
+  border-radius: 3px;
+
+  color: var(--subtle-text, #b4aea2);
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* Add-to-trip button */
+#places-grid button,
+#places-grid .place-select,
+#places-grid .place-card__select,
+.places-grid button,
+.places-grid .place-select,
+.places-grid .place-card__select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: calc(100% - 32px);
+  min-height: 46px;
+  margin: auto 16px 16px;
+  padding: 0 15px;
+
+  border: 1px solid var(--border, #30312b);
+  border-radius: 3px;
+
+  background: transparent;
+  color: var(--text, #f4f0e8);
+
+  font-family: var(--font-main, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+/* Arrow on the action */
+#places-grid button::after,
+#places-grid .place-select::after,
+#places-grid .place-card__select::after,
+.places-grid button::after,
+.places-grid .place-select::after,
+.places-grid .place-card__select::after {
+  content: "↗";
+  font-size: 17px;
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+#places-grid button:hover,
+#places-grid .place-select:hover,
+#places-grid .place-card__select:hover,
+.places-grid button:hover,
+.places-grid .place-select:hover,
+.places-grid .place-card__select:hover {
+  border-color: var(--accent, #c86b3c);
+  background: var(--accent, #c86b3c);
+  color: #171510;
+}
+
+#places-grid button:hover::after,
+#places-grid .place-select:hover::after,
+#places-grid .place-card__select:hover::after,
+.places-grid button:hover::after,
+.places-grid .place-select:hover::after,
+.places-grid .place-card__select:hover::after {
+  transform: translate(2px, -2px);
+}
+
+/* Selected card */
+#places-grid > *.selected,
+#places-grid > *.is-selected,
+#places-grid > *[aria-pressed="true"],
+.places-grid > *.selected,
+.places-grid > *.is-selected,
+.places-grid > *[aria-pressed="true"] {
+  border-color: var(--accent, #c86b3c);
+  background: #1b1b16;
+}
+
+/* Selected action */
+#places-grid button.selected,
+#places-grid button.is-selected,
+#places-grid button[aria-pressed="true"],
+.places-grid button.selected,
+.places-grid button.is-selected,
+.places-grid button[aria-pressed="true"] {
+  border-color: var(--accent, #c86b3c);
+  background: var(--accent, #c86b3c);
+  color: #171510;
+}
+
+/* Keep card images cinematic if your JS renders them */
+#places-grid img,
+.places-grid img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: var(--surface-light, #1c1d19);
+}
+
+/* Image should sit flush against the card edges */
+#places-grid > * > img:first-child,
+.places-grid > * > img:first-child {
+  margin: 0 0 4px;
+}
+
+/* Keyboard accessibility */
+#places-grid button:focus-visible,
+.places-grid button:focus-visible {
+  outline: 2px solid var(--accent, #c86b3c);
+  outline-offset: 3px;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  #places-grid,
+  .places-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  #places-grid,
+  .places-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #places-grid > *,
+  .places-grid > * {
+    min-height: 250px;
+  }
+
+  #places-grid h2,
+  #places-grid h3,
+  #places-grid .place-card-title,
+  #places-grid .place-card__title,
+  .places-grid h2,
+  .places-grid h3,
+  .places-grid .place-card-title,
+  .places-grid .place-card__title {
+    padding: 20px 20px 0;
+    font-size: 23px;
+  }
+
+  #places-grid .place-card-location,
+  #places-grid .place-card__location,
+  .places-grid .place-card-location,
+  .places-grid .place-card__location {
+    padding: 12px 20px 0;
+  }
+
+  #places-grid .place-card-description,
+  #places-grid .place-card__description,
+  .places-grid .place-card-description,
+  .places-grid .place-card__description {
+    padding: 18px 20px 24px;
+  }
+
+  #places-grid button,
+  #places-grid .place-select,
+  #places-grid .place-card__select,
+  .places-grid button,
+  .places-grid .place-select,
+  .places-grid .place-card__select {
+    width: calc(100% - 28px);
+    margin-right: 14px;
+    margin-left: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #places-grid > *,
+  .places-grid > *,
+  #places-grid button,
+  .places-grid button {
+    transition: none;
+  }
+}
