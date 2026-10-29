@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Explore Destinations | TripForge</title>
+    <meta
+      name="description"
+      content="Discover places worth going. Explore destinations, find experiences, and choose the places you want to visit with TripForge."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Fira+Mono:wght@400;500&family=Josefin+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/explore.css" />
+
+    <script src="JavaScript/explore.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/logo/logo.png" alt="" class="nav-logo-image" />
+          <span class="nav-logo-text">TripForge</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="explore.html" class="nav-link active" aria-current="page">
+            Explore
+          </a>
+          <a href="dashboard.html" class="nav-link">Dashboard</a>
+        </div>
+
+        <a href="new-trips.html" class="nav-cta">+ New Trip</a>
+      </div>
+    </nav>
+
+    <main id="explore-page">
+      <!-- Explore introduction -->
+      <section id="explore-hero">
+        <div class="explore-hero-container">
+          <p class="explore-eyebrow">DISCOVER YOUR NEXT JOURNEY</p>
+
+          <h1 class="explore-title">Find Places Worth Going.</h1>
+
+          <p class="explore-description">
+            Discover places that match your interests, your pace, and your idea
+            of adventure.
+          </p>
+
+          <!-- Destination search -->
+          <form id="destination-search" class="destination-search">
+            <label for="destination-input">
+              Where do you want to explore?
+            </label>
+
+            <div class="destination-search-field">
+              <input
+                type="search"
+                id="destination-input"
+                name="destination"
+                placeholder="Search a state, city, or destination..."
+                autocomplete="off"
+              />
+
+              <button type="submit" id="destination-search-button">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <section id="explore-filters">
+        <div class="explore-content-container">
+          <div class="explore-section-heading">
+            <div>
+              <p class="explore-section-eyebrow">MAKE IT YOUR JOURNEY</p>
+              <h2 class="explore-section-title">What interests you?</h2>
+              <p class="explore-section-description">
+                Choose one or more filters to discover places that suit you.
+              </p>
+            </div>
+
+            <button type="button" id="clear-filters" class="text-button">
+              Clear filters
+            </button>
+          </div>
+
+          <fieldset class="experience-filters">
+            <legend class="visually-hidden">
+              Filter destinations by experience
+            </legend>
+
+            <label class="filter-option">
+              <input type="checkbox" name="experience" value="adventure" />
+              <span>Adventure</span>
+            </label>
+
+            <label class="filter-option">
+              <input type="checkbox" name="experience" value="nature" />
+              <span>Nature</span>
+            </label>
+
+            <label class="filter-option">
+              <input type="checkbox" name="experience" value="culture" />
+              <span>Culture &amp; Heritage</span>
+            </label>
+
+            <label class="filter-option">
+              <input type="checkbox" name="experience" value="relaxation" />
+              <span>Relaxation &amp; Wellness</span>
+            </label>
+
+            <div id="additional-filters" hidden>
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="wildlife" />
+                <span>Wildlife</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="beaches" />
+                <span>Beaches</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="food" />
+                <span>Food &amp; Local Life</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="history" />
+                <span>History</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="spiritual" />
+                <span>Spiritual</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="photography" />
+                <span>Photography</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="water-sports" />
+                <span>Water Sports</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="nightlife" />
+                <span>Nightlife</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="hidden-gems" />
+                <span>Hidden Gems</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="shopping" />
+                <span>Shopping</span>
+              </label>
+
+              <label class="filter-option">
+                <input type="checkbox" name="experience" value="family" />
+                <span>Family Activities</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button
+            type="button"
+            id="toggle-filters"
+            class="more-filters-button"
+            aria-expanded="false"
+            aria-controls="additional-filters"
+          >
+            More filters <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Matching places -->
+      <section id="explore-results">
+        <div class="explore-content-container">
+          <div class="explore-section-heading">
+            <div>
+              <p class="explore-section-eyebrow">YOUR NEXT STOP</p>
+              <h2 class="explore-section-title">Places to explore</h2>
+              <p
+                id="results-description"
+                class="explore-section-description"
+                aria-live="polite"
+              >
+                Search for a destination and select your interests to get
+                started.
+              </p>
+            </div>
+
+            <label for="results-sort" class="results-sort">
+              Sort by
+              <select id="results-sort" name="sort">
+                <option value="recommended">Recommended</option>
+                <option value="name">Name</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="selected-filter-summary" class="selected-filter-summary">
+            No experience filters selected
+          </div>
+
+          <div id="places-grid" class="places-grid">
+            <!-- Matching place cards will be rendered here by JavaScript. -->
+          </div>
+
+          <p id="no-results" class="no-results" hidden>
+            No matching places found. Try changing your destination or filters.
+          </p>
+        </div>
+      </section>
+
+      <!-- Selected places and trip handoff -->
+      <section id="trip-selection">
+        <div class="trip-selection-container">
+          <div class="trip-selection-copy">
+            <p class="explore-section-eyebrow">YOUR JOURNEY, YOUR CHOICE</p>
+
+            <h2 class="trip-selection-title">Your trip starts here.</h2>
+
+            <p class="trip-selection-description">
+              Choose the places you want to visit. Your destination, interests,
+              and selected places will carry over to trip planning.
+            </p>
+          </div>
+
+          <div class="trip-selection-summary">
+            <p id="selected-places-count" aria-live="polite">
+              0 places selected
+            </p>
+
+            <div id="selected-places-list">
+              <!-- Selected places will appear here. -->
+            </div>
+
+            <button
+              type="button"
+              id="create-trip-button"
+              class="create-trip-button"
+              disabled
+            >
+              Create My Trip →
+            </button>
+
+            <p id="trip-selection-message" class="trip-selection-message">
+              Select at least one place to continue.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <img
+                src="assets/logo/logo.png"
+                alt=""
+                class="footer-logo-image"
+              />
+              <span class="footer-logo-text">TripForge</span>
+            </a>
+
+            <p class="footer-description">
+              Discover places, plan your route, and keep every detail of your
+              journey organized.
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3 class="footer-column-title">Discover</h3>
+            <a href="index.html#discover" class="footer-link"> Destinations </a>
+            <a href="explore.html" class="footer-link"> Explore Places </a>
+          </div>
+
+          <div class="footer-column">
+            <h3 class="footer-column-title">Your Trips</h3>
+            <a href="new-trips.html" class="footer-link">New Trip</a>
+            <a href="dashboard.html" class="footer-link">Dashboard</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2026 TripForge. All rights reserved.</p>
+
+          <p class="footer-signoff">Made for journeys worth taking.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
