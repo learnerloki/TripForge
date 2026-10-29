@@ -144,8 +144,21 @@ If you find the project interesting, explore the code, share feedback, and follo
 
 ---
 
-\<p align="center">
-&#x20; \<sub>Designed with purpose. Built for the journey.\</sub>
-&#x20; \<br/>
-&#x20; \<b>TripForge © 2026\</b>
-\</p>
+---
+## ✦ Project Preview 
+
+<img width="1917" height="916" alt="Screenshot 2026-10-29 144139" src="https://github.com/user-attachments/assets/6a5560d2-bd85-4490-bfec-f1fb3dc277d5" />
+
+
+<img width="1917" height="912" alt="Screenshot 2026-10-29 144200" src="https://github.com/user-attachments/assets/0f827598-e649-4694-9a13-b18cac514c6f" />
+
+<img width="1917" height="907" alt="Screenshot 2026-10-29 144214" src="https://github.com/user-attachments/assets/7201ce00-4199-4476-aa49-c0c4f89eced1" />
+
+
+
+
+<p align="center">
+&#x20; <sub>Designed with purpose. Built for the journey.</sub>
+&#x20; <br/>
+&#x20; <b>TripForge © 2026</b>
+</p>
