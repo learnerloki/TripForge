@@ -201,7 +201,6 @@ const destinations = [
 // 1. DOM ELEMENTS
 // =========================================
 
-// grabgin refs... hope these IDs don't change later lol
 const toggleButton = document.querySelector("#toggle-filters");
 const additionalFilters = document.querySelector("#additional-filters");
 
@@ -225,7 +224,6 @@ const selectedPlacesList = document.querySelector("#selected-places-list");
 const createTripButton = document.querySelector("#create-trip-button");
 const tripSelectionMessage = document.querySelector("#trip-selection-message");
 
-// TODO: check if this selector needs to be more specific later
 const experienceCheckboxes = document.querySelectorAll(
   'input[name="experience"]',
 );
@@ -236,7 +234,7 @@ const experienceCheckboxes = document.querySelectorAll(
 
 let matchedDestination = null;
 let selectedFilters = [];
-let matchingExperiences = []; // maybe don't even need this globally? keeping it for now
+let matchingExperiences = [];
 
 const STORAGE_KEY = "tripforge-selected-places";
 
@@ -319,11 +317,14 @@ if (toggleButton && additionalFilters) {
 
 function readSelectedFilters() {
   // mapping checkboxes to readable names
-  selectedFilters = Array.from(experienceCheckboxes)
-    .filter((checkbox) => checkbox.checked)
-    .map((checkbox) => {
-      return experienceLabels[checkbox.value] || checkbox.value;
-    });
+  selectedFilters = [];
+  for (let i = 0; i < experienceCheckboxes.length; i++) {
+    const checkbox = experienceCheckboxes[i];
+    if (checkbox.checked) {
+      const label = experienceLabels[checkbox.value] || checkbox.value;
+      selectedFilters.push(label);
+    }
+  }
 }
 
 // =========================================
@@ -347,7 +348,7 @@ if (destinationForm && destinationInput) {
       return;
     }
 
-    // finding the destination - case insensitive match would be nice, but names are capitalized in array
+    // finding the destination (case-insensitive match)
     matchedDestination = destinations.find((destination) => {
       return destination.name.toLowerCase() === searchTerm;
     });

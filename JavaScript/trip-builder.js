@@ -37,7 +37,20 @@ function initSectionA() {
   const state = places[0].state;
 
   // Collect unique experiences across all selected places
-  const experiences = [...new Set(places.map((place) => place.experience))];
+  const experiences = [];
+  for (let i = 0; i < places.length; i++) {
+    const exp = places[i].experience;
+    let found = false;
+    for (let e = 0; e < experiences.length; e++) {
+      if (experiences[e] === exp) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      experiences.push(exp);
+    }
+  }
 
   headerDestination.textContent = `${destination}, ${state}`;
   headerExperiences.textContent = experiences.join(" · ");
@@ -131,14 +144,12 @@ budgetInput.addEventListener("input", function () {
 
   budgetPerDay.innerHTML =
     "Per day: ₹<span>" + tripBudget.perDay.toFixed(0) + "</span>";
-  console.log("Budget total:", tripBudget.total, "Per day:", tripBudget.perDay);
   saveTripState();
 });
 
 stayRadios.forEach(function (radio) {
   radio.addEventListener("change", function () {
     tripBudget.stayPreference = radio.value;
-    console.log("Stay preference:", tripBudget.stayPreference);
     saveTripState();
   });
 });
@@ -263,7 +274,6 @@ function renderHotels() {
           }
         }
 
-        console.log("Hotel selected:", hotel.name);
         saveTripState();
       });
   }
@@ -295,23 +305,28 @@ function loadTripState() {
 
     // Restore dates
     if (draft.dates) {
-      tripDates = draft.dates;
-      if (draft.dates.start) inputStartDate.value = draft.dates.start;
-      if (draft.dates.end) inputEndDate.value = draft.dates.end;
+      tripDates.start = draft.dates.start || null;
+      tripDates.end = draft.dates.end || null;
+      tripDates.totalDays = draft.dates.totalDays || 0;
+      if (draft.dates.start) inputStartDate.value = tripDates.start;
+      if (draft.dates.end) inputEndDate.value = tripDates.end;
       if (draft.dates.totalDays)
-        valueTotalDays.textContent = draft.dates.totalDays;
+        valueTotalDays.textContent = tripDates.totalDays;
     }
 
     // Restore members
     if (draft.members) {
-      tripMembers = draft.members;
+      tripMembers.adults = draft.members.adults || 1;
+      tripMembers.children = draft.members.children || 0;
       if (adultsInput) adultsInput.value = tripMembers.adults;
       if (childrenInput) childrenInput.value = tripMembers.children;
     }
 
     // Restore budget
     if (draft.budget) {
-      tripBudget = draft.budget;
+      tripBudget.total = draft.budget.total || 0;
+      tripBudget.perDay = draft.budget.perDay || 0;
+      tripBudget.stayPreference = draft.budget.stayPreference || "Budget";
       if (budgetInput) budgetInput.value = tripBudget.total;
       if (budgetPerDay) {
         budgetPerDay.innerHTML =
@@ -330,12 +345,14 @@ function loadTripState() {
 
     // Restore hotel selection
     if (draft.hotel) {
-      tripHotel = draft.hotel;
+      tripHotel.selectedId = draft.hotel.selectedId || null;
+      tripHotel.hotel = draft.hotel.hotel || null;
     }
 
     // Restore activities
     if (draft.activities) {
-      tripActivities = draft.activities;
+      tripActivities.perDay = draft.activities.perDay || 3;
+      tripActivities.assignments = draft.activities.assignments || {};
       if (inputActivitiesPerDay) {
         inputActivitiesPerDay.value = tripActivities.perDay;
       }
@@ -345,8 +362,6 @@ function loadTripState() {
     // Re-render hotels and itinerary with saved selection
     renderHotels();
     renderItinerary();
-
-    console.log("TripForge: Draft loaded from localStorage");
   } catch (error) {
     console.warn("Could not load trip draft.", error);
   }
@@ -369,7 +384,6 @@ inputEndDate.addEventListener("input", function () {
 adultsPlus.addEventListener("click", function () {
   tripMembers.adults = tripMembers.adults + 1;
   adultsInput.value = tripMembers.adults;
-  console.log("Adults:", tripMembers.adults);
   saveTripState();
 });
 
@@ -377,7 +391,6 @@ adultsMinus.addEventListener("click", function () {
   if (tripMembers.adults > 1) {
     tripMembers.adults = tripMembers.adults - 1;
     adultsInput.value = tripMembers.adults;
-    console.log("Adults:", tripMembers.adults);
     saveTripState();
   }
 });
@@ -385,7 +398,6 @@ adultsMinus.addEventListener("click", function () {
 childrenPlus.addEventListener("click", function () {
   tripMembers.children = tripMembers.children + 1;
   childrenInput.value = tripMembers.children;
-  console.log("Children:", tripMembers.children);
   saveTripState();
 });
 
@@ -393,7 +405,6 @@ childrenMinus.addEventListener("click", function () {
   if (tripMembers.children > 0) {
     tripMembers.children = tripMembers.children - 1;
     childrenInput.value = tripMembers.children;
-    console.log("Children:", tripMembers.children);
     saveTripState();
   }
 });
@@ -719,13 +730,7 @@ function validateSave() {
 }
 
 function saveTrip() {
-  console.log("TripBuilder: saveTrip called");
-  console.log("TripBuilder: tripDates=", tripDates);
-  console.log("TripBuilder: tripHotel.selectedId=", tripHotel.selectedId);
-  console.log("TripBuilder: tripActivities.perDay=", tripActivities.perDay);
-
   const error = validateSave();
-  console.log("TripBuilder: validateSave error=", error);
   if (error) {
     messageSave.textContent = error;
     messageSave.style.color = varError();
@@ -792,7 +797,6 @@ function saveTrip() {
 
   try {
     localStorage.setItem("tripforge-trips", JSON.stringify(allTrips));
-    console.log("TripBuilder: Saved", allTrips.length, "trips to localStorage");
     messageSave.style.color = varSuccess();
     messageSave.hidden = false;
     btnSaveTrip.disabled = true;
@@ -847,4 +851,3 @@ renderHotels();
 renderItinerary();
 renderSummary();
 initSectionA();
-initSectionB();

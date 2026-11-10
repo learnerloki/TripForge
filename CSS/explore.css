@@ -365,6 +365,7 @@
 
 /* ========================================
    EXPERIENCE CARDS
+   Premium editorial travel cards
 ======================================== */
 
 .place-card {
@@ -374,29 +375,62 @@
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 20px;
   color: var(--text);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .place-card:hover {
   background: var(--surface-light);
-  border-color: rgba(200, 107, 60, 0.45);
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.16);
+  border-color: var(--accent);
+  border-left-color: var(--text);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
 }
 
+/* Hero image - cinematic treatment */
 .place-card-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 170px;
   overflow: hidden;
   background: var(--surface-light);
+  border-bottom: none;
+}
+
+.place-card-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    transparent 35%,
+    transparent 65%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.place-card-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(200, 107, 60, 0.15) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
 }
 
 .place-card-image img {
@@ -404,126 +438,173 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  object-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: saturate(1.05);
 }
 
 .place-card:hover .place-card-image img {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
+/* Content area - editorial spacing */
 .place-card-content {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding: 22px;
+  padding: 26px 24px 24px;
+  gap: 16px;
 }
 
+/* Location chip - sits above title */
 .place-card-location {
-  margin: 0 0 9px;
+  margin: 0 0 10px;
+  padding: 5px 12px;
+  display: inline-block;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 50px;
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.7px;
-  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
   text-transform: uppercase;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .place-card-title {
-  margin: 0;
+  margin: 0 0 8px;
   color: var(--text);
   font-family: var(--font-display);
-  font-size: 23px;
-  font-weight: 500;
-  letter-spacing: -0.3px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
   line-height: 1.25;
+  max-width: 100%;
 }
 
 .place-card-description {
-  margin: 11px 0 18px;
+  margin: 0;
   color: var(--muted-text);
-  font-size: 12px;
-  line-height: 1.8;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.75;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* Theme tags - the filter labels (spiritual, culture, photography, etc.) */
 .place-card-themes {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 18px;
+  gap: 8px;
+  margin-top: auto;
+  margin-bottom: 2px;
 }
 
 .place-theme-tag {
-  padding: 5px 8px;
-  background: rgba(200, 107, 60, 0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--surface-light);
   border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--muted-text);
+  border-radius: 50px;
+  color: var(--subtle-text);
+  font-family: var(--font-mono);
   font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.place-theme-tag:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--background);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(200, 107, 60, 0.25);
 }
 
 /* Selection checkbox */
 .place-select {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 12px;
   margin-top: auto;
-  padding-top: 5px;
+  padding-top: 14px;
   color: var(--text);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
 }
 
 .place-select input {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   margin: 0;
   accent-color: var(--accent);
   cursor: pointer;
 }
 
-/* Buttons used inside dynamically rendered cards */
+/* Add-to-trip button */
 .place-card button,
 .place-card__select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 40px;
+  width: 100%;
+  min-height: 48px;
   margin-top: auto;
-  padding: 0 15px;
-  background: var(--text);
-  border: 1px solid transparent;
-  border-radius: 7px;
-  color: var(--background);
+  padding: 0 20px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
   font-family: var(--font-main);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
   cursor: pointer;
   transition:
     background 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .place-card button:hover,
 .place-card__select:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fffaf5;
-  transform: translateY(-1px);
+  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(200, 107, 60, 0.3);
 }
 
 .place-card__select[aria-pressed="true"] {
-  background: rgba(200, 107, 60, 0.12);
-  border-color: rgba(200, 107, 60, 0.55);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--text);
+  box-shadow: 0 4px 12px rgba(200, 107, 60, 0.25);
 }
 
 .place-card__select[aria-pressed="true"]:hover {
-  background: rgba(200, 107, 60, 0.2);
+  background: var(--warning);
+  border-color: var(--warning);
   color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(200, 107, 60, 0.35);
 }
 
 /* Empty results */
@@ -849,326 +930,5 @@ select:focus-visible,
   .place-card__select:hover,
   .place-card:hover .place-card-image img {
     transform: none;
-  }
-}
-
-/* ==========================================
-   TRIPFORGE — EXPERIENCE CARDS
-   Warm, editorial, travel-focused styling
-   ========================================== */
-
-/* Grid */
-#places-grid,
-.places-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  align-items: stretch;
-}
-
-/* Card shell */
-#places-grid > *,
-.places-grid > * {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 300px;
-  overflow: hidden;
-
-  background: var(--surface, #151714);
-  border: 1px solid var(--border, #30312b);
-  border-radius: 5px;
-
-  transition:
-    border-color 220ms ease,
-    background-color 220ms ease,
-    transform 220ms ease;
-}
-
-/* Restrained hover */
-#places-grid > *:hover,
-.places-grid > *:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent, #c86b3c);
-  background: var(--surface-light, #1c1d19);
-}
-
-/* Card headings */
-#places-grid h2,
-#places-grid h3,
-#places-grid .place-card-title,
-#places-grid .place-card__title,
-.places-grid h2,
-.places-grid h3,
-.places-grid .place-card-title,
-.places-grid .place-card__title {
-  margin: 0;
-  padding: 24px 24px 0;
-
-  color: var(--text, #f4f0e8);
-  font-family: var(--font-display, Georgia, serif);
-  font-size: clamp(21px, 1.6vw, 27px);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.035em;
-}
-
-/* Location */
-#places-grid .place-card-location,
-#places-grid .place-card__location,
-.places-grid .place-card-location,
-.places-grid .place-card__location {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  margin: 0;
-  padding: 14px 24px 0;
-
-  color: var(--subtle-text, #b4aea2);
-  font-size: 13px;
-  line-height: 1.5;
-  letter-spacing: 0.025em;
-}
-
-/* Add a subtle location marker if the location is a paragraph */
-#places-grid .place-card-location::before,
-#places-grid .place-card__location::before,
-.places-grid .place-card-location::before,
-.places-grid .place-card__location::before {
-  content: "";
-  flex: 0 0 6px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent, #c86b3c);
-}
-
-/* Description */
-#places-grid .place-card-description,
-#places-grid .place-card__description,
-.places-grid .place-card-description,
-.places-grid .place-card__description {
-  margin: 0;
-  padding: 22px 24px 28px;
-
-  color: var(--muted-text, #ded8cd);
-  font-size: 15px;
-  line-height: 1.75;
-  font-weight: 400;
-
-  flex: 1;
-}
-
-/* Theme/category tags */
-#places-grid .place-card-themes,
-#places-grid .place-card__themes,
-.places-grid .place-card-themes,
-.places-grid .place-card__themes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  padding: 0 24px 20px;
-}
-
-#places-grid .place-theme-tag,
-#places-grid .place-card__tag,
-.places-grid .place-theme-tag,
-.places-grid .place-card__tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 9px;
-
-  border: 1px solid var(--border, #30312b);
-  border-radius: 3px;
-
-  color: var(--subtle-text, #b4aea2);
-  font-size: 10px;
-  line-height: 1.2;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-/* Add-to-trip button */
-#places-grid button,
-#places-grid .place-select,
-#places-grid .place-card__select,
-.places-grid button,
-.places-grid .place-select,
-.places-grid .place-card__select {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  width: calc(100% - 32px);
-  min-height: 46px;
-  margin: auto 16px 16px;
-  padding: 0 15px;
-
-  border: 1px solid var(--border, #30312b);
-  border-radius: 3px;
-
-  background: transparent;
-  color: var(--text, #f4f0e8);
-
-  font-family: var(--font-main, sans-serif);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-
-  cursor: pointer;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease;
-}
-
-/* Arrow on the action */
-#places-grid button::after,
-#places-grid .place-select::after,
-#places-grid .place-card__select::after,
-.places-grid button::after,
-.places-grid .place-select::after,
-.places-grid .place-card__select::after {
-  content: "↗";
-  font-size: 17px;
-  font-weight: 400;
-  transition: transform 180ms ease;
-}
-
-#places-grid button:hover,
-#places-grid .place-select:hover,
-#places-grid .place-card__select:hover,
-.places-grid button:hover,
-.places-grid .place-select:hover,
-.places-grid .place-card__select:hover {
-  border-color: var(--accent, #c86b3c);
-  background: var(--accent, #c86b3c);
-  color: #171510;
-}
-
-#places-grid button:hover::after,
-#places-grid .place-select:hover::after,
-#places-grid .place-card__select:hover::after,
-.places-grid button:hover::after,
-.places-grid .place-select:hover::after,
-.places-grid .place-card__select:hover::after {
-  transform: translate(2px, -2px);
-}
-
-/* Selected card */
-#places-grid > *.selected,
-#places-grid > *.is-selected,
-#places-grid > *[aria-pressed="true"],
-.places-grid > *.selected,
-.places-grid > *.is-selected,
-.places-grid > *[aria-pressed="true"] {
-  border-color: var(--accent, #c86b3c);
-  background: #1b1b16;
-}
-
-/* Selected action */
-#places-grid button.selected,
-#places-grid button.is-selected,
-#places-grid button[aria-pressed="true"],
-.places-grid button.selected,
-.places-grid button.is-selected,
-.places-grid button[aria-pressed="true"] {
-  border-color: var(--accent, #c86b3c);
-  background: var(--accent, #c86b3c);
-  color: #171510;
-}
-
-/* Keep card images cinematic if your JS renders them */
-#places-grid img,
-.places-grid img {
-  display: block;
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  background: var(--surface-light, #1c1d19);
-}
-
-/* Image should sit flush against the card edges */
-#places-grid > * > img:first-child,
-.places-grid > * > img:first-child {
-  margin: 0 0 4px;
-}
-
-/* Keyboard accessibility */
-#places-grid button:focus-visible,
-.places-grid button:focus-visible {
-  outline: 2px solid var(--accent, #c86b3c);
-  outline-offset: 3px;
-}
-
-/* Tablet */
-@media (max-width: 1000px) {
-  #places-grid,
-  .places-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 620px) {
-  #places-grid,
-  .places-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  #places-grid > *,
-  .places-grid > * {
-    min-height: 250px;
-  }
-
-  #places-grid h2,
-  #places-grid h3,
-  #places-grid .place-card-title,
-  #places-grid .place-card__title,
-  .places-grid h2,
-  .places-grid h3,
-  .places-grid .place-card-title,
-  .places-grid .place-card__title {
-    padding: 20px 20px 0;
-    font-size: 23px;
-  }
-
-  #places-grid .place-card-location,
-  #places-grid .place-card__location,
-  .places-grid .place-card-location,
-  .places-grid .place-card__location {
-    padding: 12px 20px 0;
-  }
-
-  #places-grid .place-card-description,
-  #places-grid .place-card__description,
-  .places-grid .place-card-description,
-  .places-grid .place-card__description {
-    padding: 18px 20px 24px;
-  }
-
-  #places-grid button,
-  #places-grid .place-select,
-  #places-grid .place-card__select,
-  .places-grid button,
-  .places-grid .place-select,
-  .places-grid .place-card__select {
-    width: calc(100% - 28px);
-    margin-right: 14px;
-    margin-left: 14px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #places-grid > *,
-  .places-grid > *,
-  #places-grid button,
-  .places-grid button {
-    transition: none;
   }
 }
